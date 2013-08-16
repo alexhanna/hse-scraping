@@ -5,7 +5,7 @@ from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
 from scrapy.item import Item
 
 class BlogSpider(CrawlSpider):
-    name = "blogSpider"
+    name = "blogspider"
     allowed_domains = [
         "wordpress.org", 
         "blogspot.com", 
@@ -18,7 +18,7 @@ class BlogSpider(CrawlSpider):
     start_urls = ["http://scatter.wordpress.com"]
 
     rules = (
-        Rule(SgmlLinkExtractor(allow=('/', )))
+        Rule(SgmlLinkExtractor(allow=('/', ))), 
     )
 
     def parse(self, response):
