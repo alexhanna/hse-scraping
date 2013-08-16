@@ -1,8 +1,10 @@
 #!/usr/bin/python
 
-from scrapy.spider import BaseSpider
+from scrapy.contrib.spiders import CrawlSpider, Rule
+from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
+from scrapy.item import Item
 
-class BlogSpider(BaseSpider):
+class BlogSpider(CrawlSpider):
     name = "blogSpider"
     allowed_domains = [
         "wordpress.org", 
@@ -15,6 +17,11 @@ class BlogSpider(BaseSpider):
     ## TK: Change this so we cna get arguments from the command line
     start_urls = ["http://scatter.wordpress.com"]
 
+    rules = (
+        Rule(SgmlLinkExtractor(allow=('/', )))
+    )
+
     def parse(self, response):
-        filename = response.url.split("/")[-2]
+        data_dir = "data"
+        filename = ""
         open(filename, 'wb').write(response.body)
