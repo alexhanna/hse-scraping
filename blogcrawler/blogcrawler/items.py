@@ -6,10 +6,5 @@
 from scrapy.item import Item, Field
 
 class BlogcrawlerItem(Item):
-    # define the fields for your item here like:
-    
-    title = Field()
-    link  = Field()
-    desc  = Field()
-
-    
+    url1 = Field()
+    url2 = Field()   
